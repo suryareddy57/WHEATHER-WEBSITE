@@ -123,8 +123,8 @@ function displayResults(weather) {
 
   let temp = document.querySelector('.current .temp');
   temp.innerHTML = `
-    <div>Current: ${tempCelsius}°C / ${tempFahrenheit}°F / ${tempKelvin}K</div>
-    <div>Predicted: ${futureCelsius}°C / ${futureFahrenheit}°F / ${futureKelvin}K</div>
+    <div>Current: <span class="celsius">${tempCelsius}°C</span> / <span class="fahrenheit">${tempFahrenheit}°F</span> / <span class="kelvin">${tempKelvin}K</span></div>
+    <div>Predicted: <span class="celsius-pred">${futureCelsius}°C</span> / <span class="fahrenheit-pred">${futureFahrenheit}°F</span> / <span class="kelvin-pred">${futureKelvin}K</span></div>
   `;
 
   let feelsLike = document.querySelector('.current .feels-like span');
@@ -133,8 +133,29 @@ function displayResults(weather) {
   let humidity = document.querySelector('.current .humidity span');
   humidity.innerHTML = `${weather.main.humidity}%`;
 
-  let hilow = document.querySelector('.hi-low');
+  let hilow = document.querySelector('.hi-low span');
   hilow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+
+  // Wind speed calculations
+  let windSpeedMps = weather.wind.speed;
+  let windSpeedKph = Math.round(windSpeedMps * 3.6);
+
+  let wind = document.querySelector('.current .wind span');
+  wind.innerHTML = `${windSpeedMps} m/s / ${windSpeedKph} km/h`; // Display wind speed in m/s and km/h
+
+  // Air pressure
+  let pressure = document.querySelector('.current .pressure span');
+  pressure.innerHTML = `${weather.main.pressure} hPa`; // Display air pressure in hPa
+
+  // Precipitation
+  let precipitation = document.querySelector('.current .precipitation span');
+  let rain = weather.rain ? weather.rain['1h'] || weather.rain['3h'] : 0;
+  let snow = weather.snow ? weather.snow['1h'] || weather.snow['3h'] : 0;
+  precipitation.innerHTML = `${rain + snow} mm`; // Display precipitation in mm
+
+  // Cloudiness
+  let cloudiness = document.querySelector('.current .cloudiness span');
+  cloudiness.innerHTML = `${weather.clouds.all}%`; // Display cloudiness in percentage
 }
 
 function dateBuilder (d) {
