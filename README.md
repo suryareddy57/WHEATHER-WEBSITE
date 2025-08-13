@@ -6,7 +6,7 @@ It's a  Simple Weather Application made by using HTML, CSS &amp; JavaScript.
 
 The app is created by Surya reddyfor helping out the beginners on how to make Simple Weather Application using HTML, CSS &amp; JavaScript
 
-
+live Demo : https://suryareddy57.github.io/WHEATHER-WEBSITE/
 
 ## Show some :heart: and :star: the repo if you like the design.
 
